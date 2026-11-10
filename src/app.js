@@ -16,5 +16,5 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Error interno del servidor' });
 });
-
+//Sirve para exportar la aplicación y poder usarla en otros archivos
 module.exports = app;
