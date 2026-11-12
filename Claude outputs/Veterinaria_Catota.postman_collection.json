@@ -1,0 +1,361 @@
+{
+  "info": {
+    "name": "Prueba I Parcial – Veterinaria – Catota",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. GET lista completa (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "02. GET mascota que existe (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "03. GET mascota que no existe (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/99",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "99"
+          ]
+        }
+      }
+    },
+    {
+      "name": "04. POST registro correcto (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chip\": \"985141000123461\",\n  \"nombre\": \"Luna\",\n  \"especie\": \"Gato\",\n  \"raza\": \"Persa\",\n  \"edad\": 3,\n  \"peso\": 3.5,\n  \"telefono_dueno\": \"0991112233\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "05. POST chip repetido (409)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chip\": \"985141000123456\",\n  \"nombre\": \"Toby\",\n  \"especie\": \"Perro\",\n  \"raza\": \"Beagle\",\n  \"edad\": 2,\n  \"peso\": 10,\n  \"telefono_dueno\": \"0995556677\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "06. POST teléfono incompleto (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chip\": \"985141000123462\",\n  \"nombre\": \"Max\",\n  \"especie\": \"Perro\",\n  \"raza\": \"Labrador\",\n  \"edad\": 5,\n  \"peso\": 28,\n  \"telefono_dueno\": \"09912\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "07. POST periquito de 20 kg (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chip\": \"985141000123463\",\n  \"nombre\": \"Kiwi\",\n  \"especie\": \"Ave\",\n  \"raza\": \"Periquito\",\n  \"edad\": 1,\n  \"peso\": 20,\n  \"telefono_dueno\": \"0984443322\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "08. PUT edición correcta (200)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "2"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chip\": \"985141000123457\",\n  \"nombre\": \"Michi\",\n  \"especie\": \"Gato\",\n  \"raza\": \"Siamés\",\n  \"edad\": 3,\n  \"peso\": 4.8,\n  \"telefono_dueno\": \"0987654321\",\n  \"hospitalizado\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "09. PUT mascota que no existe (404)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/99",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "99"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chip\": \"985141000123499\",\n  \"nombre\": \"Nala\",\n  \"especie\": \"Gato\",\n  \"raza\": \"Angora\",\n  \"edad\": 2,\n  \"peso\": 3,\n  \"telefono_dueno\": \"0981234567\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "10. PUT con chip de otra mascota (409)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "2"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chip\": \"985141000123456\",\n  \"nombre\": \"Michi\",\n  \"especie\": \"Gato\",\n  \"raza\": \"Siamés\",\n  \"edad\": 3,\n  \"peso\": 4.8,\n  \"telefono_dueno\": \"0987654321\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "11. DELETE mascota hospitalizada (409)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "5"
+          ]
+        }
+      }
+    },
+    {
+      "name": "12. DELETE mascota (204)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "6"
+          ]
+        }
+      }
+    },
+    {
+      "name": "13. DELETE mascota ya eliminada (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/mascotas/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mascotas",
+            "6"
+          ]
+        }
+      }
+    }
+  ]
+}
