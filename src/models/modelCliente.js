@@ -1,4 +1,4 @@
-const pool = require('../configdb/db.js');
+const pool = require('../config/db.js');
  
 async function crearCliente(nombre, email, passwordHash) {
     const r = await pool.query(`INSERT INTO clientes (nombre, email, password)

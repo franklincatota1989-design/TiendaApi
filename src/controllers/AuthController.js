@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
- 
 const Cliente = require('../models/modelCliente.js');
  
 const validarEmail = email => typeof email === 'string' && email.includes('@');
@@ -14,7 +13,7 @@ async function registro(req, res) {
     }
     try {
         // ¿Ese email ya tiene cuenta?
-        const existe = await Cliente.buscarPorEmail(email.toLowerCase());
+        const existe = await Cliente.obtenerClientePorCorreo(email.toLowerCase());
         if (existe) {
             return res.status(409).json({ error: 'El email ya está registrado' });
         }
@@ -34,7 +33,7 @@ async function login(req, res) {
     }
     try {
         // 1. ¿Existe el cliente?
-        const cliente = await Cliente.buscarPorEmail(email.toLowerCase());
+        const cliente = await Cliente.obtenerClientePorCorreo(email.toLowerCase());
         // 2. ¿La clave coincide con el hash guardado?
         const ok = cliente && await bcrypt.compare(password, cliente.password);
         if (!ok) {
