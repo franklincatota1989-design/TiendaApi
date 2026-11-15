@@ -1,8 +1,8 @@
 // El controlador valida los datos y decide qué código de estado responder
 const producto = require('../models/producto.model.js');
-
+const Categoria = require('../models/modelCategoria.js');
 // Validación de datos: nombre obligatorio, precio mayor a 0 y stock no negativo
-const datosValidos = (d) => d.nombre && Number(d.precio) > 0 && Number(d.stock) >= 0;
+const datosValidados = (d) => d.nombre && Number(d.precio) > 0 && Number(d.stock) >= 0 && idValido(d.categoria_id);
 // Validación de ID: debe ser un número entero mayor a 0
 const idValido = (id) => Number.isInteger(Number(id)) && Number(id) > 0;
 
@@ -24,24 +24,29 @@ async function obtenerProductoPorId(req, res) {
 }
 
 async function crearProducto(req, res) {
-  const { nombre, precio, stock } = req.body ?? {};
-  if (!datosValidos({ nombre, precio, stock })) {
+  const { nombre, precio, stock, categoria_id } = req.body ?? {};
+  if (!datosValidados({ nombre, precio, stock, categoria_id })) {
     return res.status(400).json({ error: 'Datos inválidos' });
   }
-  const nuevo = await producto.crearProducto(nombre, precio, stock);
-  res.status(201).json(nuevo);
+  // if (!Categoria.idCategoriaValido(categoria_id)) {
+ //       return res.status(400).json({ error: 'La categoría no valida' });
+  //}
+  res.status(201).json(await producto.crearProducto(nombre, precio, stock, categoria_id));
 }
 
 async function actualizarProducto(req, res) {
   const { id } = req.params;
-  const { nombre, precio, stock } = req.body ?? {};
+  const { nombre, precio, stock, categoria_id } = req.body ?? {};
   if (!idValido(id)) {
     return res.status(400).json({ error: 'ID inválido' });
   }
-  if (!datosValidos({ nombre, precio, stock })) {
+  if (!datosValidados({ nombre, precio, stock, categoria_id })) {
     return res.status(400).json({ error: 'Datos inválidos' });
   }
-  const actualizado = await producto.actualizarProducto(id, nombre, precio, stock);
+  //if (!Categoria.idCategoriaValido(categoria_id)) {
+  //  return res.status(400).json({ error: 'La categoría no valida' });
+//  }
+  const actualizado = await producto.actualizarProducto(id, nombre, precio, stock, categoria_id);
   if (!actualizado) {
     return res.status(404).json({ error: 'Producto no encontrado' });
   }
