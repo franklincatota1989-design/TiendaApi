@@ -5,6 +5,9 @@ const path = require('path');
 const productosRoutes = require('./routes/productos.routes.js');
 const routesCategoria = require('./routes/routesCategoria.js');
 const routesAuth = require('./routes/routesAuth.js');
+// arriba, junto a las otras rutas
+const routesPedido = require('./routes/routesPedido.js');
+
 // 3. Crear la aplicación y permitir leer JSON en el body
 const app = express();
 app.use(express.json());
@@ -16,6 +19,8 @@ app.use('/categorias', routesCategoria);
 
 //Llamar a la ruta de autenticación
 app.use('/auth', routesAuth);
+// debajo de app.use('/auth', ...) y ANTES del 404
+app.use('/pedidos', routesPedido);
 //Ruta no encontrada (404)
 app.use((req, res) => {
     res.status(404).json({ error: 'Ruta no encontrada' });

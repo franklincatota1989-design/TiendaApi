@@ -2,7 +2,7 @@
 const { Router } = require('express');
  
 //Controlador de autenticación y el middleware que revisa el token
-const control = require('../controllers/AuthController.js');
+const control = require('../controllers/ControllerAuth.js');
 const verificarToken = require('../middlewares/verificarToken.js');
  
 const routesAuth = Router();
